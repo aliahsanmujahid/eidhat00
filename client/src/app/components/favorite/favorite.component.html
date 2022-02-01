@@ -1,0 +1,26 @@
+
+  <div class="wrapper">
+    <div class="cards_wrap">
+      <h1 *ngIf="noFav">No Favorite Product</h1>
+      
+      <div *ngFor="let item of products" class="card_item">
+        <div class="card_inner">
+          <div class="card_top">
+            <img src="{{item.image1}}"  alt=""> 
+          </div>
+          <div class="psummer">
+            <span>Name: {{item.name}}</span> 
+           <div >
+            <span>Price: {{item.discPrice}} tk</span>
+           </div>
+          </div>
+          <div>
+            <span >Remove</span>
+          </div>
+        </div>
+      </div>
+  
+      
+    </div>
+  </div>
+  

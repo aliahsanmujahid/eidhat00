@@ -1,0 +1,23 @@
+    <div class="container">
+
+      <div class="layout">
+        <div class="col col-main" *ngIf="(accountService.currentUser$ | async) as user">
+          <img src="{{user.image}}" alt="">
+          <h2>Name: {{user.displayName}}</h2>
+          <h2>Role: {{user.roles[0]}}</h2>
+          <h2>Email: {{user.email}}</h2>
+        </div>
+        <div class="col col-complementary" role="complementary">
+          <h2>Address</h2>
+          <p>Address Line 1: ***********</p>
+          <p>Address Line 2: ***********</p>
+          <p>Address Description: ***********</p>
+          <p>District: ***********</p>
+          <p>Upazilla/Thana: ***********</p>
+          <button>Update/Edit</button>
+        </div>  
+      </div>   
+    
+    
+    
+    </div>      

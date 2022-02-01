@@ -1,0 +1,146 @@
+input[type=text],input[type=number], select,textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input.ng-dirty.ng-invalid {
+    border-left: 10px solid red;
+  }
+  textarea.ng-dirty.ng-invalid {
+    border-left: 10px solid red;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 2px;
+  }
+
+  ul{
+    display: inline-block;
+  }
+  ul li{
+    display: inline-block;
+    margin: 2px;
+  }
+  h3{
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .highlight{
+    background-color: red; 
+    color: white;
+  }
+  .highlight2{
+    background-color: rgb(0, 255, 34); 
+    color: white;
+    margin: 10px 10px 10px 10px;
+  }
+  .orderview{
+    padding: 6px;
+    background-color: rgba(0, 238, 255, 0.808);
+    margin: 5px;
+  }
+  .spanmargin{
+    margin-top: 150px;
+  }
+  hr{
+    width: 300px;
+    margin: 0 auto;
+    padding: 3px;
+    background-color: rgb(255, 230, 0);
+  }
+  h4{
+    padding: 3px 5px 3px 5px;
+    background-color: rgb(255, 230, 0);
+    border-radius: 5px;
+    margin-bottom: 2px;
+  }
+  button{
+    padding: 20px;
+    background-color: rgba(74, 255, 57, 0.658);
+    border: 2px solid rgb(14, 4, 9);
+    border-radius: 5px;
+  }
+
+  .column{
+    float: left;
+    width: 50%;
+  }
+
+  @media (max-width: 800px) {
+    .column{
+      width: 100%;
+      display: block;
+      float: left;
+    }
+  }
+
+
+  img{
+    width: 100px;
+  }
+
+  
+  .items li{
+    display: block;
+  }
+
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

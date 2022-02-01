@@ -1,0 +1,27 @@
+<div class="tobbar">
+    <img src="https://i.imgur.com/gHQXaPo.jpg" alt="">
+</div>
+
+<div class="row">
+  <div *ngFor="let item of category" class="column">
+    <div class="card">
+      <h3>{{item.name}}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div *ngFor="let item of subcategory" (click)="getsubCatProduct(item.id)" class="column">
+      <div class="card">
+        <h3>{{item.name}}</h3>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+  <div *ngFor="let item of subsubcategory" class="column">
+    <div class="card">
+      <h3>{{item.name}}</h3>
+    </div>
+  </div>
+</div>

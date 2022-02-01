@@ -1,0 +1,48 @@
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="distance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScroll()"
+>
+
+<div class="wrapper">
+  <div class="cards_wrap">
+    <div *ngFor="let item of products" class="card_item">
+      <div  routerLink="/single/{{item.id}}">
+      <div class="card_inner">
+        <div class="card_top">
+          <img src="{{item.image1}}"  alt="">
+      </div>
+      </div>
+    
+
+      <h4>
+        {{item.name}}
+      </h4>
+
+      <div class="price">
+        
+        <div class="highlight">
+          <h4 *ngFor="let h of item.highLights.split('#',2)" class="label warning">{{h}}</h4>
+        </div>
+        <span class="delprice">৳{{item.price}}</span>
+        <span class="mainprice">৳{{item.discPrice}}</span>
+        <span style="color: rgb(255, 0, 179);">&#8722;70%</span>
+      </div>
+    </div>
+
+      <div class="cartbutton">
+        <button (click)="addItemToBasket(item)" *ngIf="item.colors.length == 0 && item.sizes.length == 0 && !isinBasket(item.id)">Add To Cart</button>
+        <button routerLink="/single/{{item.id}}" *ngIf="(item.colors.length >= 1 || item.sizes.length >= 1) && !isinBasket(item.id)">Select</button>
+        <button class="added" *ngIf="isinBasket(item.id)">Added</button>
+      </div>
+    </div>
+
+
+
+
+
+
+  <h1 *ngIf="noproduct">No Product</h1>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="distance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScroll()"
+>
+
+<form #SearchOrderform="ngForm" (ngSubmit)="SearchOrder()" novalidate>
+  <span>
+    <input id="search" type="search" [(ngModel)]="search" type="text" name="search" required minlength="1" placeholder="Search.."> 
+    <button  class="searchbutton" [disabled]="SearchOrderform.invalid" type="submit" >Search</button>  
+  </span>
+</form>
+
+<div class="topnav bar">
+  
+    <a (click)="getOrdersByStatus('Pending')">Pending</a>
+    <a (click)="getOrdersByStatus('Approved')">Approved</a>
+    <a (click)="getOrdersByStatus('Delevared')">Delevaring</a>
+    <a (click)="getOrdersByStatus('Confirmed')">Confirmed</a>
+    <a (click)="getOrdersByStatus('Rejected')">Rejected</a>
+  
+</div>  
+
+<div class="container">
+  <span *ngIf="!orderview">
+    <div *ngFor="let item of orders" class="topnav" >
+      <a >Order Id: {{item.id}}</a>
+      <a href="#contact">Status:{{item.status}}</a>
+      <div class="topnav-right">
+        <a (click)="viewOrder(item.id)" >View</a>
+        <a (click)="deleteOrder(item.id)">Delete</a>
+      </div>
+    </div>  
+    <h1 *ngIf="noorder">No Orders</h1>
+  </span>
+  
+  <span  *ngIf="orderview">
+    
+    <span *ngFor="let item of singleorder">
+      {{item.id}}
+      <hr>
+      {{item.name}}
+      <hr>
+      {{item.phone}}
+      <hr>
+      <hr>
+      {{item.address}}
+      <hr>
+      {{item.district}}
+      <hr>
+      {{item.upazila}}
+      <hr>
+      Status:{{item.status}}
+
+      <h3>--------Purchased------</h3>
+      <span *ngFor="let p of item.orderItems">
+        <hr>
+        {{p.id}}
+        <hr>
+        {{p.name}}
+        <hr>
+        {{p.price}}
+        <hr>
+        {{p.color}}
+        <hr>
+        {{p.size}}
+        <hr>
+        {{p.quantity}}
+        <hr>
+        {{p.totalPrice}}
+      </span>
+    <div class="topnav ">
+      <a *appHasRole='["Admin", "Moderator","Seller"]' (click)="changeStatus(item.id,'Pending')">Pending</a>
+      <a *appHasRole='["Admin", "Moderator","Seller"]' (click)="changeStatus(item.id,'Approved')">Approve</a>
+      <a *appHasRole='["Admin", "Moderator","Seller"]' (click)="changeStatus(item.id,'Delevared')">Delevar</a>
+      <a *appHasRole='["Admin","Member"]' (click)="changeStatus(item.id,'Confirmed')">Confirm</a>
+      <a *appHasRole='["Admin", "Moderator","Seller"]' (click)="changeStatus(item.id,'Rejected')">Reject</a>
+    
+  </div>  
+</span>
+  </span>
+</div> 

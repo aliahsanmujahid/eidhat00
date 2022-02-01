@@ -1,0 +1,207 @@
+<div class="topnav">
+     <a (click)="div1Function()"  *ngIf="accountService.currentUser$ | async" class="color">             
+      Profile
+     </a>
+      <a  (click)="div2Function()"  *appHasRole='["Admin"]' class="color">             
+        Category
+      </a>
+      <a  (click)="div3Function()"  *appHasRole='["Admin"]' class="color">             
+        Roles
+      </a>
+      <a  (click)="div4Function()"  *appHasRole='["Admin", "Moderator","Seller"]' class="color">             
+        Products
+      </a>
+      <a  (click)="div5Function()"  *appHasRole='["Admin", "Moderator","Seller"]' class="color">             
+        Seller Orders
+      </a>
+      <a  (click)="div6Function()"  *appHasRole='["Member","Admin"]' class="color">             
+        Orders
+      </a>
+      <!-- <a  (click)="div7Function()"  *appHasRole='["Member","Admin"]' class="color">             
+        Favorites
+      </a> -->
+  </div>
+
+  <div class="content2">
+    <div *ngIf="div1">
+      <div class="container">
+  
+        <div class="layout">
+          <div class="col col-main" *ngIf="(accountService.currentUser$ | async) as user">
+            <img src="{{user.image}}" alt="">
+            <h2>Name: {{user.displayName}}</h2>
+            <h2>Role: {{user.roles[0]}}</h2>
+            <h2>Email: {{user.email}}</h2>
+          </div>
+          <div class="col col-complementary" role="complementary">
+            <h2>Address</h2>
+            <p>Address Line 1: ***********</p>
+            <p>Address Line 2: ***********</p>
+            <p>Address Description: ***********</p>
+            <p>District: ***********</p>
+            <p>Upazilla/Thana: ***********</p>
+            <button>Update/Edit</button>
+          </div>  
+        </div>   
+      
+      
+      
+      </div>      
+    </div>
+
+    <div *ngIf="div2">
+    <div class="row">
+    <div class="column" style="background-color:#aaa;">
+      <div>
+        <form #categoryForm="ngForm" (ngSubmit)="createCategory()" autocomplete="off">
+          <div class="form-group">
+              <input type="text" class="form-control" name="Username" 
+                  [(ngModel)]="category.name" placeholder="Username"  >
+          </div>
+    
+        <div class="form-group text-center">
+            <button class="btn btn-success mr-2" type="submit">Create</button>
+        </div>
+    </form> 
+      </div>
+  
+      <div class="container">
+        <table id="customers">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Delete</th>
+            </tr>
+            <tr *ngFor="let f of categoryes">
+              <td>{{f.id}}</td>
+              <td>{{f.name}}</td>
+              <td><button (click)="delete1(f.id)">Delete</button></td>
+            </tr>
+            
+          </table>
+        </div>
+    </div>
+  
+  
+  
+    <div class="column" style="background-color:#bbb;">
+      <form #f="ngForm" (ngSubmit)="createSubCategory()" >
+      <div class="form-group">
+        <select [(ngModel)]="subcategory.MenuId" class="form-control" name="MenuId" >
+  
+          <option *ngFor="let m of categoryes" value="{{ m.id }}">{{ m.name }}</option>
+        </select>
+          </div>
+          <div class="form-group">
+            <label for="contactName">Sub Menu</label>
+            <input [(ngModel)]="subcategory.Name" id="Name" type="text" class="form-control" name="Name" >
+          </div>
+          <button class="btn btn-success mr-2" type="submit">Create</button>
+        </form>
+  
+        <div class="container">
+          <table id="customers">
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Delete</th>
+              </tr>
+              <tr *ngFor="let f of subcategoryes">
+                <td>{{f.id}}</td>
+                <td>{{f.name}}</td>
+                <td><button (click)="delete2(f.id)">Delete</button></td>
+              </tr>
+              
+            </table>
+          </div>
+    </div>
+  
+  
+    <div class="column" style="background-color:#ccc;">
+      <form #f="ngForm" (ngSubmit)="createSubSubCategory()" >
+        <div class="form-group">
+          <select [(ngModel)]="subsubcategory.MenuId" class="form-control" name="MenuId" >
+  
+            <option *ngFor="let m of subcategoryes" value="{{ m.id }}">{{ m.name }}</option>
+          </select>
+            </div>
+            <div class="form-group">
+              <label for="contactName">Sub Menu</label>
+              <input [(ngModel)]="subsubcategory.Name" id="Name" type="text" class="form-control" name="Name" >
+            </div>
+            <button class="btn btn-success mr-2" type="submit">Create</button>
+          </form>
+    
+          <div class="container">
+            <table id="customers">
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Delete</th>
+                </tr>
+                <tr *ngFor="let f of subsubcategoryes">
+                  <td>{{f.id}}</td>
+                  <td>{{f.name}}</td>
+                  <td><button (click)="delete3(f.id)">Delete</button></td>
+                </tr>
+                
+              </table>
+            </div>
+    </div>
+  </div>
+    
+  <button (click)="changeMade()">Change Made</button>
+
+    </div>
+
+    <div *ngIf="div3">
+      <div class="row">
+        <table class="table">
+            <tr>
+                <th style="width: 30%;">Email</th>
+                <th style="width: 40%;">Active roles</th>
+                <th style="width: 30%;"></th>
+            </tr>
+            <tr *ngFor="let user of users">
+                <td>{{user.email}}</td>
+                <td>{{user.roles}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div>
+        <h2>Edit Role</h2>
+        <form #editForm="ngForm" (ngSubmit)="updateUserRoles()" autocomplete="off">
+            <label for="fname">Email</label>
+            <input [(ngModel)]="roles.email" type="text" name="email" placeholder="Email..">
+        
+            <label for="lname">Roles</label>
+            <input [(ngModel)]="roles.roles" type="text" name="roles" placeholder="Roles..">
+    
+            <input type="submit" value="Submit">
+          </form>
+          {{roles | json }}
+    </div>
+    </div>
+    <div *ngIf="div4">
+      <div class="center">
+        <button *ngIf="productview" (click)="createView()" >Create Product</button>
+        <button *ngIf="productcreate" (click)="createView()" >Products</button>
+      </div>
+      <span *ngIf="productview">
+        <app-product ></app-product>
+      </span>
+      <span *ngIf="productcreate">
+        <app-addeditproduct></app-addeditproduct>
+      </span>
+    </div>
+    <div *ngIf="div5">
+      Seller Orders
+    </div>
+    <div *ngIf="div6">
+      No Orders
+    </div>
+    <div *ngIf="div7">
+      <app-favorite></app-favorite>
+    </div>
+  </div>    
